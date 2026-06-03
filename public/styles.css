@@ -238,11 +238,12 @@ h1 {
 
 .progress-line {
   display: grid;
-  gap: 10px;
-  margin-bottom: 22px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  font-weight: 800;
+  gap: 0;
+  margin-bottom: 24px;
+}
+
+.progress-line > span {
+  display: none;
 }
 
 .progress-track {
@@ -477,6 +478,69 @@ textarea:focus {
   font-weight: 800;
 }
 
+.social-proof {
+  width: 100%;
+  max-width: 920px;
+  margin: 8px auto 0;
+  padding: 24px 0 2px;
+}
+
+.social-proof-header {
+  max-width: 620px;
+  margin: 0 auto 16px;
+  text-align: center;
+}
+
+.social-proof-header span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.social-proof-header h2 {
+  margin-top: 8px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+}
+
+.result-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.settlement-card {
+  padding: 18px;
+  border: 1px solid rgba(49, 68, 95, 0.1);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 14px 36px rgba(37, 48, 68, 0.06);
+}
+
+.settlement-card strong {
+  display: block;
+  color: var(--brand);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.settlement-card span {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.proof-disclaimer {
+  max-width: 760px;
+  margin: 16px auto 0;
+  color: #858b96;
+  font-size: 0.76rem;
+  text-align: center;
+}
+
 .theme-injuries {
   --bg: #fbfaf7;
   --brand: #31445f;
@@ -542,6 +606,10 @@ textarea:focus {
   .wizard {
     min-height: 640px;
     padding: 30px;
+  }
+
+  .result-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

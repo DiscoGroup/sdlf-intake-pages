@@ -30,7 +30,7 @@
           <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
-          <div class="progress-line"><span id="stepCount">1 of 9</span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
           <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
@@ -41,6 +41,15 @@
           </div>
         </form>
       </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Institutional abuse cases</span><h2>Survivors deserve careful, confidential review.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$1.8M</strong><span>Institutional abuse claim involving staff misconduct</span></div>
+          <div class="settlement-card"><strong>$900K</strong><span>Failure-to-protect survivor resolution</span></div>
+          <div class="settlement-card"><strong>$425K</strong><span>Confidential custody-setting settlement</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
+      </section>
       <footer class="site-footer"><span>Confidential survivor review</span><span>California detention facilities</span><span>Attorney advertising</span></footer>
     </main>
     <script>
@@ -50,19 +59,13 @@
         resultHint: "Strong leads usually involve a California custody setting, sexual abuse or harassment, youth status, notice/reporting, harm, or retaliation.",
         consent: "By submitting, you agree SDLF may call or text you about this confidential detention abuse review. Submitting does not create an attorney-client relationship.",
         steps: [
-          { type: "choice", name: "claimantRole", title: "Who is this review for?", options: [
-            { label: "Myself, as a survivor", value: "Survivor", score: 12 },
-            { label: "My child or teen", value: "Parent/guardian", score: 12 },
-            { label: "A family member who passed away", value: "Family wrongful death concern", score: 14, map: { injured: "Fatal injury" } },
-            { label: "I am helping someone else", value: "Third-party helper", score: 6 },
-            { label: "General information only", value: "Information only", score: -6 }
-          ] },
-          { type: "choice", name: "ageAtIncident", title: "How old was the survivor when it happened?", options: [
-            { label: "Under 14", value: "Under 14", score: 18 },
-            { label: "14 to 17", value: "14 to 17", score: 18 },
-            { label: "18 to 20 while still in juvenile/probation custody", value: "18 to 20 in juvenile custody", score: 10 },
+          { type: "choice", name: "ageAndRole", title: "Who is this review for?", options: [
+            { label: "Myself, and I was under 18 when it happened", value: "Survivor under 18", score: 28, map: { claimantRole: "Survivor", ageAtIncident: "Under 18" } },
+            { label: "My child or teen", value: "Parent/guardian for minor", score: 28, map: { claimantRole: "Parent/guardian", ageAtIncident: "Under 18" } },
+            { label: "I was 18 to 20 while still in juvenile/probation custody", value: "18 to 20 in juvenile custody", score: 14, map: { claimantRole: "Survivor", ageAtIncident: "18 to 20 in juvenile custody" } },
+            { label: "A family member passed away", value: "Family wrongful death concern", score: 18, map: { claimantRole: "Family wrongful death concern", injured: "Fatal injury" } },
             { label: "21 or older", value: "21 or older", score: -10 },
-            { label: "Not sure", value: "Unknown age", score: 2 }
+            { label: "General information only", value: "Information only", score: -6 }
           ] },
           { type: "choice", name: "facilityType", title: "Where did it happen?", options: [
             { label: "California juvenile hall or detention center", value: "CA juvenile hall/detention center", score: 18, map: { injuryType: "Juvenile detention sexual abuse" } },
@@ -71,38 +74,21 @@
             { label: "Transport, court holding, or off-site custody", value: "Custody transport/holding", score: 10 },
             { label: "Not in California", value: "Outside California", score: -8 }
           ] },
-          { type: "choice", name: "abuseType", title: "What happened?", options: [
-            { label: "Sexual assault, forced contact, or coercion", value: "Sexual assault/coercion", score: 28, map: { injured: "Yes" } },
-            { label: "Staff requested sexual acts, images, or favors", value: "Staff sexual demands", score: 24, map: { injured: "Yes" } },
-            { label: "Repeated sexual harassment, threats, or exposure", value: "Sexual harassment/threats", score: 16, map: { injured: "Yes" } },
-            { label: "Another youth abused me and staff failed to protect me", value: "Peer abuse/failure to protect", score: 18, map: { injured: "Yes" } },
+          { type: "choice", name: "abuseAndPerson", title: "What happened?", options: [
+            { label: "Sexual assault, forced contact, or coercion by staff", value: "Staff sexual assault/coercion", score: 42, map: { abuseType: "Sexual assault/coercion", personInvolved: "Facility staff", injured: "Yes" } },
+            { label: "Staff requested sexual acts, images, or favors", value: "Staff sexual demands", score: 34, map: { abuseType: "Staff sexual demands", personInvolved: "Facility staff", injured: "Yes" } },
+            { label: "Repeated sexual harassment, threats, or exposure", value: "Sexual harassment/threats", score: 22, map: { abuseType: "Sexual harassment/threats", injured: "Yes" } },
+            { label: "Another youth abused me and staff failed to protect me", value: "Peer abuse/failure to protect", score: 24, map: { abuseType: "Peer abuse/failure to protect", personInvolved: "Another youth", injured: "Yes" } },
             { label: "I am unsure how to describe it", value: "Unsure", score: 6 }
           ] },
-          { type: "choice", name: "personInvolved", title: "Who was involved?", options: [
-            { label: "Officer, counselor, guard, or facility staff", value: "Facility staff", score: 20 },
-            { label: "Contractor, medical provider, teacher, or volunteer", value: "Contractor/provider", score: 14 },
-            { label: "Another detained youth", value: "Another youth", score: 8 },
-            { label: "Multiple people", value: "Multiple people", score: 16 },
-            { label: "I do not know", value: "Unknown person", score: 2 }
+          { type: "choice", name: "reportEvidence", title: "Was it reported or documented?", options: [
+            { label: "Reported to staff, probation, PREA, police, or hotline and treatment records exist", value: "Report and treatment evidence", score: 32, map: { reported: "Reported", harmEvidence: "Treatment and report evidence" } },
+            { label: "Staff witnessed it or should have known", value: "Staff knew/should have known", score: 18, map: { reported: "Staff knew/should have known" } },
+            { label: "There is therapy, medical care, a witness, or written report", value: "Treatment or report evidence", score: 20, map: { harmEvidence: "Report/witness evidence" } },
+            { label: "Fear or retaliation stopped a report", value: "Not reported due to fear", score: 8, map: { reported: "Not reported due to fear" } },
+            { label: "No records yet", value: "No records yet", score: 3, map: { harmEvidence: "No records yet" } }
           ] },
-          { type: "choice", name: "reported", title: "Was it reported or known?", options: [
-            { label: "Yes, to staff, probation, PREA, police, or hotline", value: "Reported", score: 16 },
-            { label: "Staff witnessed it or should have known", value: "Staff knew/should have known", score: 14 },
-            { label: "No, fear or retaliation stopped a report", value: "Not reported due to fear", score: 6 },
-            { label: "No", value: "Not reported", score: 0 },
-            { label: "Not sure", value: "Unknown reporting", score: 2 }
-          ] },
-          { type: "choice", name: "harmEvidence", title: "What harm or records exist?", options: [
-            { label: "Therapy, medical care, crisis care, or diagnosis", value: "Treatment records", score: 16 },
-            { label: "PREA report, grievance, police report, or witness", value: "Report/witness evidence", score: 14 },
-            { label: "Both treatment and report/witness evidence", value: "Treatment and report evidence", score: 22 },
-            { label: "Trauma impact but no records yet", value: "No records yet", score: 5 },
-            { label: "No ongoing harm", value: "No ongoing harm", score: -8 }
-          ] },
-          { type: "fields", title: "Share only what you are comfortable sharing.", note: "Helpful details include facility name, county, approximate year, who was involved, reports made, retaliation, witnesses, and treatment.", fields: [
-            { type: "textarea", name: "detentionSummary", label: "Confidential message", placeholder: "Example: Occurred at a CA juvenile hall around 2018. Staff member was involved. Reported to another staff member; no action taken.", required: true }
-          ] },
-          { type: "final", title: "Send for confidential review", note: "A reviewer can evaluate facility responsibility, reporting, retaliation, records, and timing." }
+          { type: "final", title: "Where should we send your review?", note: "A reviewer can evaluate facility responsibility, reporting, retaliation, records, and timing." }
         ]
       };
     </script>

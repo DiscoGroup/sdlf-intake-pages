@@ -30,7 +30,7 @@
           <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
-          <div class="progress-line"><span id="stepCount">1 of 9</span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
           <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
@@ -40,6 +40,15 @@
             <button id="submitButton" class="button button-primary" type="submit">Submit</button>
           </div>
         </form>
+      </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Asbestos case results</span><h2>Substantial recoveries have helped families move forward.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$2.4M</strong><span>Mesothelioma claim involving industrial exposure</span></div>
+          <div class="settlement-card"><strong>$1.1M</strong><span>Asbestos product exposure resolution</span></div>
+          <div class="settlement-card"><strong>$675K</strong><span>Secondary household exposure claim</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
       </section>
       <footer class="site-footer"><span>Diagnosis and exposure review</span><span>Trust fund and lawsuit screening</span><span>Attorney advertising</span></footer>
     </main>
@@ -57,13 +66,6 @@
             { label: "Symptoms but no diagnosis yet", value: "No diagnosis yet", score: 0, map: { injured: "Not sure yet" } },
             { label: "No asbestos-related diagnosis", value: "No asbestos diagnosis", score: -18, map: { injured: "No" } }
           ] },
-          { type: "choice", name: "diagnosisDate", title: "When was the diagnosis made?", options: [
-            { label: "Within the past 6 months", value: "Within the past 6 months", score: 16 },
-            { label: "6 to 12 months ago", value: "6 to 12 months ago", score: 14 },
-            { label: "1 to 3 years ago", value: "1 to 3 years ago", score: 8 },
-            { label: "More than 3 years ago", value: "More than 3 years ago", score: -4 },
-            { label: "A loved one passed away from it", value: "Wrongful death asbestos claim", score: 12 }
-          ] },
           { type: "choice", name: "exposureType", title: "Where may asbestos exposure have happened?", options: [
             { label: "Shipyard, Navy, or military work", value: "Shipyard/Navy/military exposure", score: 20 },
             { label: "Construction, insulation, demolition, or trades", value: "Construction/trade exposure", score: 18 },
@@ -72,33 +74,19 @@
             { label: "Secondhand exposure from a family member's work clothes", value: "Secondary household exposure", score: 12 },
             { label: "I do not know", value: "Unknown exposure", score: 2 }
           ] },
-          { type: "choice", name: "exposureYears", title: "When did exposure likely occur?", options: [
-            { label: "Before 1980", value: "Before 1980", score: 14 },
-            { label: "1980 to 1999", value: "1980 to 1999", score: 10 },
-            { label: "2000 or later", value: "2000 or later", score: 3 },
-            { label: "I am not sure", value: "Unknown exposure years", score: 2 }
-          ] },
-          { type: "choice", name: "relationship", title: "Who is the claim for?", options: [
-            { label: "Myself", value: "Patient", score: 10 },
-            { label: "Spouse or parent still living", value: "Family assisting living patient", score: 8 },
-            { label: "A loved one who passed away", value: "Wrongful death family claim", score: 10 },
-            { label: "I am gathering general information", value: "Information only", score: -4 }
-          ] },
-          { type: "choice", name: "records", title: "What records are available?", options: [
-            { label: "Diagnosis records and work history", value: "Medical and work records", score: 14 },
-            { label: "Diagnosis records only", value: "Medical records", score: 8 },
-            { label: "Work history only", value: "Work history", score: 5 },
-            { label: "No records yet", value: "No records", score: -2 }
+          { type: "choice", name: "timingAndRecords", title: "What timing and records are available?", options: [
+            { label: "Diagnosed within 3 years and medical/work records exist", value: "Recent diagnosis with records", score: 28, map: { diagnosisDate: "Recent diagnosis", records: "Medical and work records" } },
+            { label: "A loved one passed away and family has records", value: "Wrongful death asbestos claim with records", score: 22, map: { diagnosisDate: "Wrongful death asbestos claim", records: "Family records" } },
+            { label: "Diagnosis records only", value: "Medical records only", score: 12, map: { records: "Medical records" } },
+            { label: "Exposure history only", value: "Exposure history only", score: 6, map: { records: "Work history" } },
+            { label: "No records yet", value: "No records", score: -2, map: { records: "No records" } }
           ] },
           { type: "choice", name: "lawyerStatus", title: "Is a lawyer already handling the asbestos claim?", options: [
             { label: "No", value: "No lawyer", score: 8 },
             { label: "Yes, but we may switch", value: "Considering switch", score: 2 },
             { label: "Yes, already represented", value: "Already represented", score: -10 }
           ] },
-          { type: "fields", title: "Share the exposure story.", note: "Worksites, job titles, products, military branch, union records, and diagnosis date are helpful.", fields: [
-            { type: "textarea", name: "exposureSummary", label: "Exposure and diagnosis details", placeholder: "Example: Navy machinist, shipyard work in the 1970s, diagnosed with pleural mesothelioma in 2025.", required: true }
-          ] },
-          { type: "final", title: "Send for asbestos claim review", note: "A reviewer can evaluate diagnosis, exposure sources, trust funds, and filing deadlines." }
+          { type: "final", title: "Where should we send your review?", note: "A reviewer can evaluate diagnosis, exposure sources, trust funds, and filing deadlines." }
         ]
       };
     </script>

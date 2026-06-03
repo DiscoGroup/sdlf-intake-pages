@@ -30,7 +30,7 @@
           <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
-          <div class="progress-line"><span id="stepCount">1 of 9</span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
           <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
@@ -41,6 +41,15 @@
           </div>
         </form>
       </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Technology harm cases</span><h2>Families are asking for accountability.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$3M</strong><span>Reported single-plaintiff social media verdict</span></div>
+          <div class="settlement-card"><strong>$375M</strong><span>Reported youth-harm verdict in New Mexico</span></div>
+          <div class="settlement-card"><strong>5,000+</strong><span>Qualified claims tracked in related dockets</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results and reported verdicts do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
+      </section>
       <footer class="site-footer"><span>Private family review</span><span>Social media addiction screening</span><span>Attorney advertising</span></footer>
     </main>
     <script>
@@ -50,13 +59,6 @@
         resultHint: "Strong leads usually match covered apps, heavy use, injury before age 21, and documented severe harm or treatment.",
         consent: "By submitting, you agree SDLF may call or text you about this confidential social media addiction review. Submitting does not create an attorney-client relationship.",
         steps: [
-          { type: "choice", name: "claimantRole", title: "Who is this review for?", options: [
-            { label: "My child or teen", value: "Parent/guardian for minor", score: 12 },
-            { label: "My young adult child", value: "Parent/guardian for young adult", score: 10 },
-            { label: "Myself", value: "Self", score: 8 },
-            { label: "A loved one who passed away", value: "Wrongful death / family claim", score: 18, map: { injured: "Fatal injury" } },
-            { label: "General information only", value: "Information only", score: -6 }
-          ] },
           { type: "choice", name: "ageInjury", title: "How old was the person when the injury started?", options: [
             { label: "Under 13", value: "Under 13", score: 18 },
             { label: "13 to 17", value: "13 to 17", score: 18 },
@@ -64,48 +66,30 @@
             { label: "21 or older", value: "21 or older", score: -18 },
             { label: "Not sure", value: "Unknown age", score: 2 }
           ] },
-          { type: "choice", name: "coveredApps", title: "Which app was used most heavily?", note: "The attached criteria list Instagram, Facebook, TikTok, Snapchat, and YouTube.", options: [
-            { label: "TikTok", value: "TikTok", score: 14 },
-            { label: "Instagram or Facebook", value: "Instagram/Facebook", score: 14 },
-            { label: "Snapchat", value: "Snapchat", score: 14 },
-            { label: "YouTube", value: "YouTube", score: 12 },
-            { label: "Several of these apps", value: "Multiple covered apps", score: 18 },
-            { label: "A different app", value: "Non-covered app", score: -12 }
-          ] },
-          { type: "choice", name: "usageThreshold", title: "How much were they using it?", options: [
-            { label: "3+ hours a day for at least 4 weeks", value: "Meets 3+ hours/day for 4+ weeks", score: 22 },
-            { label: "3+ hours a day, but not sure for how long", value: "Likely heavy use", score: 12 },
-            { label: "1 to 2 hours a day", value: "Below threshold", score: -8 },
-            { label: "Not sure", value: "Unknown usage", score: 2 }
+          { type: "choice", name: "appAndUsage", title: "Which app and usage pattern fits best?", note: "Covered apps include Instagram, Facebook, TikTok, Snapchat, and YouTube.", options: [
+            { label: "Several covered apps, 3+ hours/day for at least 4 weeks", value: "Multiple covered apps with threshold usage", score: 36, map: { coveredApps: "Multiple covered apps", usageThreshold: "Meets 3+ hours/day for 4+ weeks" } },
+            { label: "TikTok, Instagram, Snapchat, Facebook, or YouTube at 3+ hours/day", value: "Covered app with threshold usage", score: 30, map: { coveredApps: "Covered app", usageThreshold: "Meets 3+ hours/day for 4+ weeks" } },
+            { label: "Covered app, but usage amount is unclear", value: "Covered app unknown usage", score: 14, map: { coveredApps: "Covered app", usageThreshold: "Unknown usage" } },
+            { label: "Less than 3 hours/day", value: "Below threshold", score: -8, map: { usageThreshold: "Below threshold" } },
+            { label: "A different app", value: "Non-covered app", score: -12, map: { coveredApps: "Non-covered app" } }
           ] },
           { type: "choice", name: "injuryCategory", title: "What harm occurred?", options: [
             { label: "Suicidal ideation", value: "Suicidal ideation", score: 20, map: { injured: "Yes", injuryType: "Social media addiction - suicidal ideation" } },
             { label: "Suicide attempt or suicide", value: "Suicide attempt/suicide", score: 28, map: { injured: "Serious/fatal injury", injuryType: "Social media addiction - suicide attempt/suicide" } },
             { label: "Physical self-harm", value: "Physical self-harm", score: 22, map: { injured: "Yes", injuryType: "Social media addiction - self-harm" } },
             { label: "Eating disorder, bulimia, anorexia, or binge eating", value: "Eating disorder", score: 18, map: { injured: "Yes", injuryType: "Social media addiction - eating disorder" } },
-            { label: "Body dysmorphia", value: "Body dysmorphia", score: 16, map: { injured: "Yes", injuryType: "Social media addiction - body dysmorphia" } },
-            { label: "Severe depression, anxiety, or sleep disorder", value: "Depression/anxiety/sleep disorder", score: 14, map: { injured: "Yes", injuryType: "Social media addiction - mental health" } },
+            { label: "Body dysmorphia, severe depression, anxiety, or sleep disorder", value: "Mental health or dysmorphia", score: 16, map: { injured: "Yes", injuryType: "Social media addiction - mental health" } },
             { label: "Drug overdose", value: "Drug overdose", score: 18, map: { injured: "Yes", injuryType: "Social media addiction - overdose" } },
             { label: "No serious harm", value: "No serious harm", score: -18, map: { injured: "No" } }
           ] },
-          { type: "choice", name: "treatment", title: "Was there professional treatment or documentation?", options: [
-            { label: "Hospitalization, inpatient care, or crisis intervention", value: "Hospital/crisis care", score: 18 },
-            { label: "Therapy, psychiatrist, doctor, or medication", value: "Professional treatment", score: 15 },
-            { label: "School counselor or documented school impact", value: "School documentation", score: 8 },
-            { label: "No treatment yet, but willing to seek help", value: "Untreated but willing", score: 5 },
-            { label: "No treatment or documentation", value: "No treatment", score: -5 }
+          { type: "choice", name: "treatmentEvidence", title: "Is there treatment or documentation?", options: [
+            { label: "Hospital/crisis care plus digital or school records", value: "Crisis care and records", score: 30, map: { treatment: "Hospital/crisis care", evidence: "Digital and treatment records" } },
+            { label: "Therapy, doctor, psychiatrist, or medication records", value: "Professional treatment", score: 20, map: { treatment: "Professional treatment", evidence: "Medical/school records" } },
+            { label: "School counselor, school impact, screenshots, or screen-time records", value: "School/digital documentation", score: 14, map: { treatment: "School documentation", evidence: "Digital evidence" } },
+            { label: "No treatment yet, but willing to seek help", value: "Untreated but willing", score: 5, map: { treatment: "Untreated but willing" } },
+            { label: "No treatment or documentation", value: "No treatment", score: -5, map: { treatment: "No treatment" } }
           ] },
-          { type: "choice", name: "evidence", title: "What evidence may exist?", options: [
-            { label: "Screenshots, messages, app history, or screen-time records", value: "Digital evidence", score: 12 },
-            { label: "Medical records or school records", value: "Medical/school records", score: 12 },
-            { label: "Both digital records and treatment records", value: "Digital and treatment records", score: 18 },
-            { label: "Family observations only", value: "Witness observations", score: 4 },
-            { label: "No evidence yet", value: "No evidence", score: -2 }
-          ] },
-          { type: "fields", title: "Tell us the short story.", note: "Include the app, age, daily usage, injury, treatment, school impact, and any records available.", fields: [
-            { type: "textarea", name: "caseSummary", label: "What happened?", placeholder: "Example: Teen used TikTok/Instagram 4+ hours/day, developed eating disorder and self-harm, treated by therapist in 2024.", required: true }
-          ] },
-          { type: "final", title: "Send for social media addiction review", note: "A reviewer can evaluate whether the facts match current social media addiction case criteria." }
+          { type: "final", title: "Where should we send your review?", note: "A reviewer can evaluate whether the facts match current social media addiction case criteria." }
         ]
       };
     </script>

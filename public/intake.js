@@ -103,12 +103,12 @@ function finalStep(step) {
       <input name="fullName" type="text" autocomplete="name" required placeholder="Jane Doe" value="${escapeHtml(state.values.fullName || "")}">
     </label>
     <label class="field-label">
-      Email
-      <input name="email" type="email" autocomplete="email" required placeholder="jane@example.com" value="${escapeHtml(state.values.email || "")}">
-    </label>
-    <label class="field-label">
       Phone
       <input name="phone" type="tel" autocomplete="tel" required placeholder="(555) 555-5555" value="${escapeHtml(state.values.phone || "")}">
+    </label>
+    <label class="field-label">
+      Email
+      <input name="email" type="email" autocomplete="email" required placeholder="jane@example.com" value="${escapeHtml(state.values.email || "")}">
     </label>
     <label class="consent">
       <input name="consent" type="checkbox" required ${state.values.consent ? "checked" : ""}>
@@ -129,8 +129,11 @@ function renderStep() {
     stepMount.innerHTML = fieldsStep(step);
   }
 
-  stepCount.textContent = `${state.step + 1} of ${steps.length}`;
-  progressBar.style.width = `${((state.step + 1) / steps.length) * 100}%`;
+  if (stepCount) {
+    stepCount.textContent = "";
+  }
+  const progress = steps.length <= 1 ? 100 : 44 + (state.step / (steps.length - 1)) * 56;
+  progressBar.style.width = `${progress}%`;
   backButton.style.visibility = state.step === 0 ? "hidden" : "visible";
   nextButton.hidden = state.step === steps.length - 1;
   submitButton.hidden = state.step !== steps.length - 1;
@@ -157,7 +160,7 @@ function renderQualification() {
   const { score, status } = scoreLead();
   resultTitle.textContent = status;
   resultDetail.textContent = `${score}/100 qualification score. ${config.resultHint}`;
-  resultBox.hidden = state.step < steps.length - 1;
+  resultBox.hidden = true;
 }
 
 function validateStep() {

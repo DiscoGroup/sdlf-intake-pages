@@ -30,7 +30,7 @@
           <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
-          <div class="progress-line"><span id="stepCount">1 of 8</span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
           <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
@@ -40,6 +40,15 @@
             <button id="submitButton" class="button button-primary" type="submit">Submit</button>
           </div>
         </form>
+      </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Employment results</span><h2>Confidential resolutions can help restore stability.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$650K</strong><span>Workplace harassment and retaliation matter</span></div>
+          <div class="settlement-card"><strong>$300K</strong><span>Hostile work environment resolution</span></div>
+          <div class="settlement-card"><strong>$175K</strong><span>Retaliation after protected complaint</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
       </section>
       <footer class="site-footer"><span>Confidential review</span><span>Harassment and retaliation screening</span><span>Attorney advertising</span></footer>
     </main>
@@ -64,36 +73,21 @@
             { label: "Retaliation after rejecting or reporting conduct", value: "Retaliation", score: 18, map: { injuryType: "Retaliation after harassment" } },
             { label: "General unfairness, not sexual in nature", value: "Not sex-based", score: -16, map: { injuryType: "General workplace issue" } }
           ] },
-          { type: "choice", name: "severity", title: "How often did it happen?", options: [
-            { label: "One severe incident", value: "One severe incident", score: 18 },
-            { label: "Repeated over weeks or months", value: "Repeated over weeks or months", score: 18 },
-            { label: "Constant or ongoing", value: "Constant or ongoing", score: 20 },
-            { label: "One offensive comment", value: "One offensive comment", score: 0 },
-            { label: "I am not sure", value: "Unsure severity", score: 3 }
+          { type: "choice", name: "severityAndRole", title: "How serious was it?", options: [
+            { label: "One severe incident by a supervisor or manager", value: "Severe supervisor incident", score: 28, map: { severity: "One severe incident", harasserRole: "Supervisor/manager" } },
+            { label: "Repeated conduct over weeks or months", value: "Repeated conduct", score: 22, map: { severity: "Repeated over weeks or months" } },
+            { label: "Constant or ongoing conduct", value: "Ongoing conduct", score: 24, map: { severity: "Constant or ongoing" } },
+            { label: "Mostly one offensive comment", value: "One offensive comment", score: 0, map: { severity: "One offensive comment" } },
+            { label: "I am not sure how to describe it", value: "Unsure severity", score: 3 }
           ] },
-          { type: "choice", name: "harasserRole", title: "Who was involved?", options: [
-            { label: "Owner, executive, manager, or supervisor", value: "Supervisor/manager", score: 16 },
-            { label: "Coworker", value: "Coworker", score: 8 },
-            { label: "Customer, vendor, patient, or client", value: "Third party", score: 6 },
-            { label: "Multiple people", value: "Multiple people", score: 12 }
+          { type: "choice", name: "reportAndImpact", title: "Did the workplace know or retaliate?", options: [
+            { label: "I reported it and then lost pay, hours, duties, or my job", value: "Reported with retaliation", score: 30, map: { reported: "Reported to HR/management", jobImpact: "Tangible job action", lostWages: 1 } },
+            { label: "Management knew or witnessed it", value: "Management knew", score: 18, map: { reported: "Supervisor knew/witnessed" } },
+            { label: "I was afraid to report and the environment stayed hostile", value: "Not reported due to fear", score: 10, map: { jobImpact: "Hostile work environment only" } },
+            { label: "It affected my work environment but no job action", value: "Hostile work environment only", score: 8, map: { jobImpact: "Hostile work environment only" } },
+            { label: "No job impact", value: "No job impact", score: -4, map: { jobImpact: "No job impact" } }
           ] },
-          { type: "choice", name: "reported", title: "Did anyone at work know or receive a report?", options: [
-            { label: "Yes, HR or management was told", value: "Reported to HR/management", score: 14 },
-            { label: "Yes, a supervisor knew or witnessed it", value: "Supervisor knew/witnessed", score: 13 },
-            { label: "No, I was afraid to report", value: "Not reported due to fear", score: 4 },
-            { label: "No", value: "Not reported", score: 0 }
-          ] },
-          { type: "choice", name: "jobImpact", title: "Did it affect your job?", options: [
-            { label: "I was fired, demoted, suspended, or lost pay", value: "Tangible job action", score: 20, map: { lostWages: 1 } },
-            { label: "Hours, schedule, promotion, or duties changed", value: "Work conditions changed", score: 14, map: { lostWages: 1 } },
-            { label: "I quit or may need to quit", value: "Constructive discharge concern", score: 14 },
-            { label: "It affected my work environment, but no formal job action", value: "Hostile work environment only", score: 8 },
-            { label: "No job impact", value: "No job impact", score: -4 }
-          ] },
-          { type: "fields", title: "Tell us what happened, in your words.", note: "Names are optional here. Include dates, witnesses, texts, reports, HR response, and retaliation if any.", fields: [
-            { type: "textarea", name: "workplaceSummary", label: "Confidential message", placeholder: "Describe the conduct, who was involved, how often it happened, whether it was reported, and what changed at work.", required: true }
-          ] },
-          { type: "final", title: "Final step", note: "Send this confidentially for review." }
+          { type: "final", title: "Where should we send your review?", note: "Share your contact details and a reviewer can follow up privately." }
         ]
       };
     </script>

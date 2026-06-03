@@ -30,7 +30,7 @@
           <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
-          <div class="progress-line"><span id="stepCount">1 of 8</span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
           <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
@@ -40,6 +40,15 @@
             <button id="submitButton" class="button button-primary" type="submit">Submit</button>
           </div>
         </form>
+      </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Recent results</span><h2>Meaningful recoveries for injured clients.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$1.25M</strong><span>Motor vehicle collision with lasting injuries</span></div>
+          <div class="settlement-card"><strong>$850K</strong><span>Premises injury with disputed responsibility</span></div>
+          <div class="settlement-card"><strong>$500K</strong><span>Policy-limits auto injury resolution</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
       </section>
       <footer class="site-footer"><span>Free consultation</span><span>No obligation</span><span>Attorney advertising</span></footer>
     </main>
@@ -61,9 +70,8 @@
             { label: "Car accident", value: "Auto accident", score: 12 },
             { label: "Motorcycle or bicycle accident", value: "Motorcycle or bicycle accident", score: 13 },
             { label: "Truck or commercial vehicle accident", value: "Truck accident", score: 16 },
-            { label: "Slip, trip, or fall", value: "Slip and fall", score: 8 },
             { label: "Wrongful death", value: "Wrongful death", score: 22, map: { injured: "Fatal injury" } },
-            { label: "Other injury", value: "Other injury", score: 5 }
+            { label: "Other injury or fall", value: "Other injury or fall", score: 7 }
           ] },
           { type: "choice", name: "treatment", title: "How serious was the medical care?", options: [
             { label: "Hospital, surgery, or admitted overnight", value: "4", score: 22, map: { injured: "Yes" } },
@@ -72,28 +80,14 @@
             { label: "Pain but no treatment yet", value: "1.25", score: 5, map: { injured: "Not sure yet" } },
             { label: "No injury", value: "1", score: -14, map: { injured: "No" } }
           ] },
-          { type: "choice", name: "fault", title: "Who seems responsible?", options: [
-            { label: "The other person or company", value: "0", score: 18 },
-            { label: "Mostly them, maybe some dispute", value: "20", score: 12 },
-            { label: "Fault is unclear", value: "50", score: 4 },
-            { label: "I may be mostly at fault", value: "75", score: -10 }
+          { type: "choice", name: "caseStrength", title: "Which best describes the claim?", options: [
+            { label: "Someone else was clearly responsible and there are medical bills", value: "Clear liability with medical damages", score: 28, map: { fault: "0", lawyerStatus: "No lawyer" } },
+            { label: "Fault may be disputed, but there are injuries", value: "Disputed liability with injuries", score: 15, map: { fault: "50" } },
+            { label: "A loved one passed away", value: "Wrongful death damages", score: 28, map: { fault: "0", injured: "Fatal injury" } },
+            { label: "Mostly property damage", value: "Property damage", score: -8, map: { fault: "0" } },
+            { label: "I already have an attorney", value: "Already represented", score: -12, map: { lawyerStatus: "Already represented" } }
           ] },
-          { type: "choice", name: "lawyerStatus", title: "Is a lawyer already handling this?", options: [
-            { label: "No, I need help", value: "No lawyer", score: 10 },
-            { label: "Yes, but I may switch", value: "Considering switch", score: 3 },
-            { label: "Yes, I already have a lawyer", value: "Already represented", score: -12 }
-          ] },
-          { type: "choice", name: "damages", title: "What losses are involved?", options: [
-            { label: "Medical bills and missed work", value: "Medical bills and missed work", score: 13 },
-            { label: "Long-term injury or disability", value: "Long-term injury or disability", score: 18 },
-            { label: "A loved one passed away", value: "Wrongful death damages", score: 24 },
-            { label: "Mostly property damage", value: "Property damage", score: -5 },
-            { label: "Not sure yet", value: "Unknown damages", score: 4 }
-          ] },
-          { type: "fields", title: "Tell us the short version.", note: "A few details help separate strong cases from calls that need basic triage.", fields: [
-            { type: "textarea", name: "caseSummary", label: "What happened?", placeholder: "Where it happened, what caused it, injuries, treatment, insurance contact, and current pain.", required: true }
-          ] },
-          { type: "final", title: "Final step", note: "Send this to SDLF for a free case evaluation." }
+          { type: "final", title: "Where should we send your review?", note: "Share your contact details and SDLF can follow up privately." }
         ]
       };
     </script>
