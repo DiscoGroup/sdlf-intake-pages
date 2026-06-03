@@ -28,7 +28,9 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 34%),
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 30%, transparent) 0, transparent 28rem),
+    radial-gradient(circle at right 18rem, color-mix(in srgb, var(--warm) 20%, transparent) 0, transparent 24rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 34%),
     linear-gradient(180deg, #ffffff 0%, var(--bg) 54%, #f7f4ee 100%);
   font-family: "Open Sans", Arial, sans-serif;
   line-height: 1.55;
@@ -51,7 +53,7 @@ textarea {
   width: min(1120px, 100%);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 18px 18px 20px;
+  padding: 14px 14px 18px;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
@@ -60,15 +62,15 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 4px 0 24px;
+  gap: 12px;
+  padding: 2px 0 14px;
 }
 
 .topbar-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 0;
   flex-wrap: wrap;
 }
 
@@ -82,8 +84,8 @@ textarea {
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border: 1px solid color-mix(in srgb, var(--brand) 16%, transparent);
   border-radius: 8px;
   background:
@@ -104,21 +106,20 @@ textarea {
   white-space: nowrap;
 }
 
-.beta-badge,
 .phone-link,
 .home-link {
-  min-height: 38px;
-  padding: 9px 13px;
+  min-height: 0;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(49, 68, 95, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.78);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--brand);
-  font-size: 0.78rem;
-  font-weight: 800;
-  box-shadow: 0 8px 24px rgba(35, 48, 68, 0.06);
+  font-size: 0.88rem;
+  font-weight: 900;
+  box-shadow: none;
 }
 
 .beta-badge {
@@ -131,8 +132,8 @@ textarea {
   align-self: center;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 0 0 30px;
+  gap: 14px;
+  padding: 0 0 22px;
 }
 
 .hero-copy {
@@ -144,8 +145,8 @@ textarea {
 .eyebrow {
   display: inline-flex;
   width: fit-content;
-  margin: 0 0 14px;
-  padding: 7px 12px;
+  margin: 0 0 10px;
+  padding: 7px 10px;
   border: 1px solid color-mix(in srgb, var(--accent) 38%, #fff);
   border-radius: 8px;
   background:
@@ -159,50 +160,21 @@ textarea {
 .trust-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
 }
 
 .trust-row span {
-  padding: 8px 10px;
+  padding: 7px 9px;
   border: 1px solid color-mix(in srgb, var(--accent) 36%, #fff);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.78);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, #fff), color-mix(in srgb, var(--warm) 12%, #fff));
   color: color-mix(in srgb, var(--brand) 78%, #111);
   font-size: 0.76rem;
   font-weight: 850;
-  box-shadow: 0 8px 18px rgba(37, 48, 68, 0.045);
-}
-
-.prestige-panel {
-  display: grid;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.prestige-panel div {
-  padding: 14px;
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, #fff);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, var(--accent-soft) 65%, #fff));
-  box-shadow: 0 14px 30px rgba(37, 48, 68, 0.055);
-}
-
-.prestige-panel strong {
-  display: block;
-  color: var(--brand);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.18rem;
-  line-height: 1;
-}
-
-.prestige-panel span {
-  display: block;
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  font-weight: 650;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 h1,
@@ -216,15 +188,16 @@ h1 {
   max-width: 680px;
   margin: 0 auto;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.35rem, 10vw, 4.7rem);
+  font-size: clamp(1.88rem, 7.7vw, 4.45rem);
   font-weight: 700;
 }
 
 .hero-copy > p:not(.eyebrow):not(.beta-note) {
   max-width: 650px;
-  margin: 18px auto 0;
+  margin: 12px auto 0;
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 0.96rem;
+  line-height: 1.46;
 }
 
 .beta-note {
@@ -285,8 +258,8 @@ h1 {
 }
 
 .wizard {
-  min-height: 600px;
-  padding: 22px;
+  min-height: 520px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -297,7 +270,7 @@ h1 {
   content: "Private Review";
   display: inline-flex;
   width: fit-content;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   padding: 7px 10px;
   border: 1px solid color-mix(in srgb, var(--gold) 44%, #fff);
   border-radius: 8px;
@@ -311,7 +284,7 @@ h1 {
 .progress-line {
   display: grid;
   gap: 0;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .progress-line > span {
@@ -345,7 +318,7 @@ h1 {
 }
 
 .wizard-step h2 {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   color: var(--ink);
   font-size: clamp(1.45rem, 7vw, 2.05rem);
   font-weight: 800;
@@ -360,13 +333,13 @@ h1 {
 
 .choice-list {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .choice-list button {
   width: 100%;
-  min-height: 62px;
-  padding: 15px 16px;
+  min-height: 50px;
+  padding: 12px 14px;
   border: 1px solid rgba(49, 68, 95, 0.11);
   border-radius: 8px;
   background:
@@ -501,7 +474,7 @@ textarea:focus {
 }
 
 .button {
-  min-height: 54px;
+  min-height: 50px;
   border: 1px solid transparent;
   border-radius: 8px;
   font-weight: 850;
@@ -557,55 +530,13 @@ textarea:focus {
 .social-proof {
   width: 100%;
   max-width: 920px;
-  margin: 10px auto 0;
-  padding: 24px 0 2px;
-}
-
-.award-wall {
-  width: 100%;
-  max-width: 980px;
-  margin: 8px auto 0;
-  display: grid;
-  gap: 10px;
-}
-
-.award-card {
-  padding: 18px;
-  border: 1px solid color-mix(in srgb, var(--accent) 34%, rgba(49, 68, 95, 0.12));
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.78)),
-    linear-gradient(135deg, color-mix(in srgb, var(--gold) 13%, transparent), color-mix(in srgb, var(--accent) 14%, transparent));
-  box-shadow: 0 18px 42px rgba(37, 48, 68, 0.07);
-}
-
-.award-card span {
-  display: block;
-  color: color-mix(in srgb, var(--brand) 66%, var(--gold));
-  font-size: 0.72rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.award-card strong {
-  display: block;
-  margin-top: 7px;
-  color: var(--brand);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.32rem;
-  line-height: 1.05;
-}
-
-.award-card p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 650;
+  margin: 0 auto;
+  padding: 18px 0 2px;
 }
 
 .social-proof-header {
   max-width: 620px;
-  margin: 0 auto 16px;
+  margin: 0 auto 12px;
   text-align: center;
 }
 
@@ -624,16 +555,16 @@ textarea:focus {
 
 .result-grid {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .settlement-card {
-  padding: 18px;
+  padding: 16px;
   border: 1px solid rgba(49, 68, 95, 0.1);
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.8));
-  box-shadow: 0 18px 44px rgba(37, 48, 68, 0.075);
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 24%, #fff), rgba(255, 255, 255, 0.88) 48%, color-mix(in srgb, var(--warm) 18%, #fff));
+  box-shadow: 0 16px 34px rgba(37, 48, 68, 0.075);
 }
 
 .settlement-card strong {
@@ -662,64 +593,64 @@ textarea:focus {
 }
 
 .theme-injuries {
-  --bg: #fbfaf7;
+  --bg: #fff8f2;
   --brand: #31445f;
   --brand-2: #253851;
-  --accent: #a7bfcb;
-  --accent-soft: #eef6f7;
-  --gold: #c8a758;
-  --warm: #d88971;
+  --accent: #56bfd2;
+  --accent-soft: #e9fbff;
+  --gold: #f0b84f;
+  --warm: #ff8f70;
 }
 
 .theme-meso {
-  --bg: #fbfaf5;
+  --bg: #fff9ee;
   --brand: #38524d;
   --brand-2: #2c403c;
-  --accent: #c9b48f;
-  --accent-soft: #f7f1e7;
-  --gold: #c79d4e;
-  --warm: #b77f61;
+  --accent: #d7b25a;
+  --accent-soft: #fff6dd;
+  --gold: #e5a83a;
+  --warm: #e4825c;
 }
 
 .theme-harassment {
-  --bg: #fcf8f7;
+  --bg: #fff7fb;
   --brand: #5c4654;
   --brand-2: #46353f;
-  --accent: #d6a7a0;
-  --accent-soft: #faeeee;
-  --gold: #c6a35e;
-  --warm: #d88f98;
+  --accent: #e77fad;
+  --accent-soft: #fff0f6;
+  --gold: #e5b94e;
+  --warm: #ff7d88;
 }
 
 .theme-sma {
-  --bg: #f9f9fd;
+  --bg: #f7f8ff;
   --brand: #424a69;
   --brand-2: #343a52;
-  --accent: #b8c4e6;
-  --accent-soft: #f0f3fb;
-  --gold: #c5a663;
-  --warm: #cf8d84;
+  --accent: #7f9cff;
+  --accent-soft: #eef2ff;
+  --gold: #efb84d;
+  --warm: #ee7fc0;
 }
 
 .theme-detention {
-  --bg: #f8fbfa;
+  --bg: #f3fffc;
   --brand: #2f5360;
   --brand-2: #24414b;
-  --accent: #9bcfc5;
-  --accent-soft: #edf8f6;
-  --gold: #c4a65b;
-  --warm: #d49377;
+  --accent: #39c7b5;
+  --accent-soft: #e9fffb;
+  --gold: #e8b649;
+  --warm: #ff9275;
 }
 
 @media (min-width: 780px) {
   .page-shell {
-    padding: 28px clamp(26px, 4vw, 44px) 24px;
+    padding: 24px clamp(26px, 4vw, 44px) 22px;
   }
 
   .hero-card {
     grid-template-columns: minmax(0, 0.88fr) minmax(420px, 560px);
     align-items: center;
-    gap: clamp(34px, 5vw, 64px);
+    gap: clamp(28px, 5vw, 58px);
   }
 
   .hero-copy {
@@ -734,33 +665,28 @@ textarea:focus {
   }
 
   .wizard {
-    min-height: 640px;
+    min-height: 600px;
     padding: 30px;
   }
 
-  .prestige-panel {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .result-grid,
-  .award-wall {
+  .result-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 560px) {
   .page-shell {
-    padding: 14px 14px 18px;
+    padding: 12px 12px 16px;
   }
 
   .topbar {
-    align-items: flex-start;
-    flex-direction: column;
-    padding-bottom: 20px;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 12px;
   }
 
   .topbar-actions {
-    width: 100%;
+    width: auto;
   }
 
   .brand-text {
@@ -768,13 +694,12 @@ textarea:focus {
   }
 
   .phone-link,
-  .home-link,
-  .beta-badge {
-    flex: 1 1 auto;
+  .home-link {
+    flex: 0 0 auto;
   }
 
   .wizard {
-    min-height: 600px;
+    min-height: 510px;
   }
 
   .wizard-actions {
