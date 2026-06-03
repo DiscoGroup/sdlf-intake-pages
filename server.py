@@ -125,7 +125,7 @@ def ensure_schema(connection, dialect):
     )
     if dialect == "postgres":
         existing_columns = {
-            row["column_name"]
+            row["column_name"].lower()
             for row in connection.execute(
                 """
                 SELECT column_name
@@ -144,7 +144,7 @@ def ensure_schema(connection, dialect):
         "qualificationData": "TEXT",
     }
     for column, column_type in column_defaults.items():
-        if column not in existing_columns:
+        if column.lower() not in existing_columns:
             connection.execute(f"ALTER TABLE submissions ADD COLUMN {column} {column_type}")
     connection.commit()
 
