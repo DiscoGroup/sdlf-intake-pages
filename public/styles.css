@@ -59,6 +59,27 @@ textarea {
   padding: 8px 0 24px;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.beta-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 39px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 18%, #fff);
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -144,6 +165,22 @@ h1 {
   margin: 22px 0 0;
   color: #405066;
   font-size: clamp(1rem, 1.7vw, 1.18rem);
+}
+
+.beta-note {
+  display: none;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, #fff);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent-soft) 76%, #fff);
+  color: color-mix(in srgb, var(--brand) 80%, #000);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.preview-mode .beta-note {
+  display: block;
 }
 
 .hub-card {
@@ -512,6 +549,10 @@ textarea:focus {
     padding-bottom: 18px;
   }
 
+  .topbar-actions {
+    width: 100%;
+  }
+
   .brand-text {
     white-space: normal;
   }
@@ -520,6 +561,11 @@ textarea:focus {
   .home-link {
     width: 100%;
     text-align: center;
+  }
+
+  .beta-badge {
+    width: 100%;
+    justify-content: center;
   }
 
   .wizard {

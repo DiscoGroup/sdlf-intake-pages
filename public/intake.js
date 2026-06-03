@@ -11,6 +11,11 @@ const resultBox = document.querySelector("#resultBox");
 const resultTitle = document.querySelector("#resultTitle");
 const resultDetail = document.querySelector("#resultDetail");
 const formStatus = document.querySelector("#formStatus");
+const isStaticPreview = location.hostname.endsWith("github.io");
+
+if (isStaticPreview) {
+  document.body.classList.add("preview-mode");
+}
 
 const state = {
   step: 0,
@@ -274,6 +279,16 @@ form.addEventListener("submit", async (event) => {
   }
 
   formStatus.classList.remove("error");
+
+  if (isStaticPreview) {
+    const { score, status } = scoreLead();
+    formStatus.textContent = `Beta preview complete: ${status} (${score}/100). Render backend will save and email this lead after deployment.`;
+    form.querySelectorAll("button, input, textarea, select").forEach((element) => {
+      element.disabled = true;
+    });
+    return;
+  }
+
   formStatus.textContent = "Saving your review...";
 
   try {
