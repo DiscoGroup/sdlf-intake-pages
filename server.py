@@ -295,6 +295,9 @@ class Handler(SimpleHTTPRequestHandler):
                     "ok": True,
                     "databaseConfigured": bool(DATABASE_URL),
                     "smtpConfigured": bool(os.environ.get("SMTP_HOST") and (os.environ.get("SMTP_FROM") or os.environ.get("SMTP_USER"))),
+                    "smtpUserConfigured": bool(os.environ.get("SMTP_USER")),
+                    "smtpPasswordConfigured": bool(os.environ.get("SMTP_PASSWORD")),
+                    "smtpFromConfigured": bool(os.environ.get("SMTP_FROM")),
                     "exportEmails": EXPORT_EMAILS,
                 },
             )
