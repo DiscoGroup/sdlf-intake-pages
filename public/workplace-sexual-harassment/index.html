@@ -31,12 +31,12 @@
             <span>No pressure</span>
             <span>Retaliation check</span>
           </div>
-          <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
+          <p class="beta-note">Preview mode. The live site saves and emails leads.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
           <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
-          <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
+          <div id="resultBox" class="result-box" hidden><span>Review</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
           <div class="wizard-actions">
             <button id="backButton" class="button button-secondary" type="button">Back</button>
@@ -46,22 +46,22 @@
         </form>
       </section>
       <section class="social-proof">
-        <div class="social-proof-header"><span>Employment results</span><h2>Confidential resolutions can help restore stability.</h2></div>
+        <div class="social-proof-header"><span>Results</span><h2>Support after harm.</h2></div>
         <div class="result-grid">
           <div class="settlement-card"><strong>$650K</strong><span>Workplace harassment and retaliation matter</span></div>
           <div class="settlement-card"><strong>$300K</strong><span>Hostile work environment resolution</span></div>
           <div class="settlement-card"><strong>$175K</strong><span>Retaliation after protected complaint</span></div>
         </div>
-        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes.</p>
       </section>
-      <footer class="site-footer"><span>Confidential review</span><span>Harassment and retaliation screening</span><span>Attorney advertising</span></footer>
+      <footer class="site-footer"><span>Private review</span><span>No pressure</span><span>Attorney advertising</span></footer>
     </main>
     <script>
       window.INTAKE_CONFIG = {
         category: "Workplace Sexual Harassment",
         thresholds: { strong: 70, review: 42 },
-        resultHint: "Strong leads usually involve unwelcome sex-based conduct, severity or repetition, employer notice, retaliation, or job consequences.",
-        consent: "By submitting, you agree Steigerwalt PLC may call or text you about your confidential workplace review. Submitting does not create an attorney-client relationship.",
+        resultHint: "What happened, who knew, and retaliation matter.",
+        consent: "I agree Steigerwalt PLC may call or text me. This does not create an attorney-client relationship.",
         steps: [
           { type: "choice", name: "lastIncident", title: "When was it?", options: [
             { label: "Past 30 days", value: "Within the past 30 days", score: 16 },

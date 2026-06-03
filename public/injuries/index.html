@@ -31,12 +31,12 @@
             <span>Private intake</span>
             <span>Fast answer</span>
           </div>
-          <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
+          <p class="beta-note">Preview mode. The live site saves and emails leads.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
           <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
-          <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
+          <div id="resultBox" class="result-box" hidden><span>Review</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
           <div class="wizard-actions">
             <button id="backButton" class="button button-secondary" type="button">Back</button>
@@ -46,22 +46,22 @@
         </form>
       </section>
       <section class="social-proof">
-        <div class="social-proof-header"><span>Recent results</span><h2>Meaningful recoveries for injured clients.</h2></div>
+        <div class="social-proof-header"><span>Results</span><h2>Real recoveries. Real help.</h2></div>
         <div class="result-grid">
           <div class="settlement-card"><strong>$1.25M</strong><span>Motor vehicle collision with lasting injuries</span></div>
           <div class="settlement-card"><strong>$850K</strong><span>Premises injury with disputed responsibility</span></div>
           <div class="settlement-card"><strong>$500K</strong><span>Policy-limits auto injury resolution</span></div>
         </div>
-        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes.</p>
       </section>
-      <footer class="site-footer"><span>Free consultation</span><span>No obligation</span><span>Attorney advertising</span></footer>
+      <footer class="site-footer"><span>Free review</span><span>No obligation</span><span>Attorney advertising</span></footer>
     </main>
     <script>
       window.INTAKE_CONFIG = {
         category: "Injuries / Car Accidents / Wrongful Death",
         thresholds: { strong: 70, review: 42 },
-        resultHint: "Treatment, fault, timing, and damages determine whether this should be prioritized.",
-        consent: "By submitting, you agree Steigerwalt PLC may call or text you about your request. Submitting does not create an attorney-client relationship.",
+        resultHint: "Timing, injuries, and fault matter.",
+        consent: "I agree Steigerwalt PLC may call or text me. This does not create an attorney-client relationship.",
         steps: [
           { type: "choice", name: "accidentDate", title: "When did it happen?", options: [
             { label: "Past month", value: "In the past month", score: 15 },

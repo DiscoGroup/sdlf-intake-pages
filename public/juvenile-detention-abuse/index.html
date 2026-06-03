@@ -31,12 +31,12 @@
             <span>CA facility check</span>
             <span>Safe follow-up</span>
           </div>
-          <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
+          <p class="beta-note">Preview mode. The live site saves and emails leads.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
           <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
           <section id="stepMount" class="wizard-step is-active"></section>
-          <div id="resultBox" class="result-box" hidden><span>Lead qualification</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
+          <div id="resultBox" class="result-box" hidden><span>Review</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
           <p id="formStatus" class="form-status" role="status"></p>
           <div class="wizard-actions">
             <button id="backButton" class="button button-secondary" type="button">Back</button>
@@ -46,22 +46,22 @@
         </form>
       </section>
       <section class="social-proof">
-        <div class="social-proof-header"><span>Institutional abuse cases</span><h2>Survivors deserve careful, confidential review.</h2></div>
+        <div class="social-proof-header"><span>Results</span><h2>Survivors deserve support.</h2></div>
         <div class="result-grid">
           <div class="settlement-card"><strong>$1.8M</strong><span>Institutional abuse claim involving staff misconduct</span></div>
           <div class="settlement-card"><strong>$900K</strong><span>Failure-to-protect survivor resolution</span></div>
           <div class="settlement-card"><strong>$425K</strong><span>Confidential custody-setting settlement</span></div>
         </div>
-        <p class="proof-disclaimer">Past results do not guarantee future outcomes. Every case is different and must be evaluated on its own facts.</p>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes.</p>
       </section>
-      <footer class="site-footer"><span>Confidential survivor review</span><span>California detention facilities</span><span>Attorney advertising</span></footer>
+      <footer class="site-footer"><span>Private intake</span><span>Safe follow-up</span><span>Attorney advertising</span></footer>
     </main>
     <script>
       window.INTAKE_CONFIG = {
         category: "California Juvenile Detention Sexual Abuse",
         thresholds: { strong: 72, review: 44 },
-        resultHint: "Strong leads usually involve a California custody setting, sexual abuse or harassment, youth status, notice/reporting, harm, or retaliation.",
-        consent: "By submitting, you agree Steigerwalt PLC may call or text you about this confidential detention abuse review. Submitting does not create an attorney-client relationship.",
+        resultHint: "Age, facility, harm, and records matter.",
+        consent: "I agree Steigerwalt PLC may call or text me. This does not create an attorney-client relationship.",
         steps: [
           { type: "choice", name: "ageAndRole", title: "Who is this for?", options: [
             { label: "Me, under 18", value: "Survivor under 18", score: 28, map: { claimantRole: "Survivor", ageAtIncident: "Under 18" } },

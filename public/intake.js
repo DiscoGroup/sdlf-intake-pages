@@ -285,14 +285,14 @@ form.addEventListener("submit", async (event) => {
 
   if (isStaticPreview) {
     const { score, status } = scoreLead();
-    formStatus.textContent = `Beta preview complete: ${status} (${score}/100). Render backend will save and email this lead after deployment.`;
+    formStatus.textContent = `Preview complete: ${status} (${score}/100). The live site saves and emails leads.`;
     form.querySelectorAll("button, input, textarea, select").forEach((element) => {
       element.disabled = true;
     });
     return;
   }
 
-  formStatus.textContent = "Saving your review...";
+  formStatus.textContent = "Sending your review...";
 
   try {
     const response = await fetch("/api/submissions", {
@@ -305,8 +305,8 @@ form.addEventListener("submit", async (event) => {
       throw new Error(result.error || "Submission failed");
     }
     formStatus.textContent = result.emailSent
-      ? "Thank you. Your submission was saved and emailed for review."
-      : "Thank you. Your submission was saved. Email export is pending SMTP configuration.";
+      ? "Thank you. Your review was sent."
+      : "Thank you. Your review was saved.";
     form.querySelectorAll("button, input, textarea, select").forEach((element) => {
       element.disabled = true;
     });
