@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>California Injury Claim Review | Steigerwalt PLC</title>
+    <meta name="description" content="Free injury, car accident, and wrongful death claim review.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body class="theme-injuries">
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Steigerwalt PLC</span>
+        </a>
+        <div class="topbar-actions">
+          <a class="phone-link" href="tel:6197940243">(619) 794-0243</a>
+        </div>
+      </header>
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Injury Help</p>
+          <h1>Hurt in an accident?</h1>
+          <p>Answer a few quick questions. We will check if your injury claim may be worth a legal review.</p>
+          <div class="trust-row" aria-label="Trust signals">
+            <span>Free review</span>
+            <span>Private intake</span>
+            <span>Fast answer</span>
+          </div>
+          <p class="beta-note">Preview mode. The live site saves and emails leads.</p>
+        </div>
+        <form id="claim-form" class="wizard" novalidate>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <section id="stepMount" class="wizard-step is-active"></section>
+          <div id="resultBox" class="result-box" hidden><span>Review</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
+          <p id="formStatus" class="form-status" role="status"></p>
+          <div class="wizard-actions">
+            <button id="backButton" class="button button-secondary" type="button">Back</button>
+            <button id="nextButton" class="button button-primary" type="button">Next</button>
+            <button id="submitButton" class="button button-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Results</span><h2>Real recoveries. Real help.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$1.25M</strong><span>Motor vehicle collision with lasting injuries</span></div>
+          <div class="settlement-card"><strong>$850K</strong><span>Premises injury with disputed responsibility</span></div>
+          <div class="settlement-card"><strong>$500K</strong><span>Policy-limits auto injury resolution</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes.</p>
+      </section>
+      <footer class="site-footer"><span>Free review</span><span>No obligation</span><span>Attorney advertising</span></footer>
+    </main>
+    <script>
+      window.INTAKE_CONFIG = {
+        category: "Injuries / Car Accidents / Wrongful Death",
+        thresholds: { strong: 70, review: 42 },
+        resultHint: "Timing, injuries, and fault matter.",
+        consent: "I agree Steigerwalt PLC may call or text me. This does not create an attorney-client relationship.",
+        steps: [
+          { type: "choice", name: "accidentDate", title: "When did it happen?", options: [
+            { label: "Past month", value: "In the past month", score: 15 },
+            { label: "1-6 months ago", value: "1 to 6 months ago", score: 14 },
+            { label: "Past year", value: "Within the last year", score: 10 },
+            { label: "1-2 years ago", value: "1 to 2 years ago", score: 5 },
+            { label: "Over 2 years ago", value: "More than 2 years ago", score: -8 }
+          ] },
+          { type: "choice", name: "injuryType", title: "What happened?", options: [
+            { label: "Car accident", value: "Auto accident", score: 12 },
+            { label: "Motorcycle or bicycle", value: "Motorcycle or bicycle", score: 13 },
+            { label: "Truck accident", value: "Truck accident", score: 16 },
+            { label: "Wrongful death", value: "Wrongful death", score: 22, map: { injured: "Fatal injury" } },
+            { label: "Other injury or fall", value: "Other injury or fall", score: 7 }
+          ] },
+          { type: "choice", name: "treatment", title: "Medical care?", options: [
+            { label: "Hospital or surgery", value: "4", score: 22, map: { injured: "Yes" } },
+            { label: "ER or imaging", value: "2.25", score: 16, map: { injured: "Yes" } },
+            { label: "Doctor or therapy", value: "3", score: 14, map: { injured: "Yes" } },
+            { label: "Pain, no care yet", value: "1.25", score: 5, map: { injured: "Not sure yet" } },
+            { label: "No injury", value: "1", score: -14, map: { injured: "No" } }
+          ] },
+          { type: "choice", name: "caseStrength", title: "Claim status?", options: [
+            { label: "Clear fault + medical bills", value: "Clear liability with medical damages", score: 28, map: { fault: "0", lawyerStatus: "No lawyer" } },
+            { label: "Fault disputed + injuries", value: "Disputed liability with injuries", score: 15, map: { fault: "50" } },
+            { label: "Loved one passed away", value: "Wrongful death damages", score: 28, map: { fault: "0", injured: "Fatal injury" } },
+            { label: "Mostly property damage", value: "Property damage", score: -8, map: { fault: "0" } },
+            { label: "Already have attorney", value: "Already represented", score: -12, map: { lawyerStatus: "Already represented" } }
+          ] },
+          { type: "final", title: "Contact info", note: "Private follow-up only." }
+        ]
+      };
+    </script>
+    <script src="../intake.js"></script>
+  </body>
+</html>

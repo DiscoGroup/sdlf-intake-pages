@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mesothelioma Asbestos Claim Review | Steigerwalt PLC</title>
+    <meta name="description" content="Free mesothelioma and asbestos exposure claim review.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body class="theme-meso">
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Steigerwalt PLC</span>
+        </a>
+        <div class="topbar-actions">
+          <a class="phone-link" href="tel:6197940243">(619) 794-0243</a>
+        </div>
+      </header>
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Asbestos Claims</p>
+          <h1>Diagnosed with mesothelioma?</h1>
+          <p>Find out if asbestos exposure, work history, or a family member's exposure may qualify for review.</p>
+          <div class="trust-row" aria-label="Trust signals">
+            <span>Diagnosis review</span>
+            <span>Exposure check</span>
+            <span>Family intake</span>
+          </div>
+          <p class="beta-note">Preview mode. The live site saves and emails leads.</p>
+        </div>
+        <form id="claim-form" class="wizard" novalidate>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <section id="stepMount" class="wizard-step is-active"></section>
+          <div id="resultBox" class="result-box" hidden><span>Review</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
+          <p id="formStatus" class="form-status" role="status"></p>
+          <div class="wizard-actions">
+            <button id="backButton" class="button button-secondary" type="button">Back</button>
+            <button id="nextButton" class="button button-primary" type="button">Next</button>
+            <button id="submitButton" class="button button-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Results</span><h2>Help for families.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$2.4M</strong><span>Mesothelioma claim involving industrial exposure</span></div>
+          <div class="settlement-card"><strong>$1.1M</strong><span>Asbestos product exposure resolution</span></div>
+          <div class="settlement-card"><strong>$675K</strong><span>Secondary household exposure claim</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes.</p>
+      </section>
+      <footer class="site-footer"><span>Free review</span><span>Exposure check</span><span>Attorney advertising</span></footer>
+    </main>
+    <script>
+      window.INTAKE_CONFIG = {
+        category: "Mass Tort / Mesothelioma From Asbestos",
+        thresholds: { strong: 72, review: 45 },
+        resultHint: "Diagnosis, exposure, and timing matter.",
+        consent: "I agree Steigerwalt PLC may call or text me. This does not create an attorney-client relationship.",
+        steps: [
+          { type: "choice", name: "diagnosis", title: "Diagnosis?", options: [
+            { label: "Mesothelioma", value: "Mesothelioma", score: 30, map: { injured: "Yes", treatment: "Mesothelioma diagnosis" } },
+            { label: "Lung cancer + asbestos", value: "Lung cancer + asbestos", score: 18, map: { injured: "Yes" } },
+            { label: "Asbestosis / pleural disease", value: "Asbestosis / pleural disease", score: 12, map: { injured: "Yes" } },
+            { label: "Symptoms, no diagnosis", value: "No diagnosis yet", score: 0, map: { injured: "Not sure yet" } },
+            { label: "No diagnosis", value: "No asbestos diagnosis", score: -18, map: { injured: "No" } }
+          ] },
+          { type: "choice", name: "exposureType", title: "Exposure source?", options: [
+            { label: "Shipyard / Navy", value: "Shipyard/Navy/military exposure", score: 20 },
+            { label: "Construction / trades", value: "Construction/trade exposure", score: 18 },
+            { label: "Industrial site", value: "Industrial worksite exposure", score: 18 },
+            { label: "Asbestos products", value: "Product exposure", score: 16 },
+            { label: "Secondhand exposure", value: "Secondary household exposure", score: 12 },
+            { label: "Not sure", value: "Unknown exposure", score: 2 }
+          ] },
+          { type: "choice", name: "timingAndRecords", title: "Records?", options: [
+            { label: "Recent diagnosis + records", value: "Recent diagnosis with records", score: 28, map: { diagnosisDate: "Recent diagnosis", records: "Medical and work records" } },
+            { label: "Wrongful death + records", value: "Wrongful death asbestos claim with records", score: 22, map: { diagnosisDate: "Wrongful death asbestos claim", records: "Family records" } },
+            { label: "Diagnosis records", value: "Medical records only", score: 12, map: { records: "Medical records" } },
+            { label: "Exposure history", value: "Exposure history", score: 6, map: { records: "Work history" } },
+            { label: "No records yet", value: "No records", score: -2, map: { records: "No records" } }
+          ] },
+          { type: "choice", name: "lawyerStatus", title: "Attorney already?", options: [
+            { label: "No", value: "No lawyer", score: 8 },
+            { label: "May switch", value: "Considering switch", score: 2 },
+            { label: "Already represented", value: "Already represented", score: -10 }
+          ] },
+          { type: "final", title: "Contact info", note: "Private follow-up only." }
+        ]
+      };
+    </script>
+    <script src="../intake.js"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workplace Sexual Harassment Review | Steigerwalt PLC</title>
+    <meta name="description" content="Confidential workplace sexual harassment and retaliation review.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body class="theme-harassment">
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Steigerwalt PLC</span>
+        </a>
+        <div class="topbar-actions">
+          <a class="phone-link" href="tel:6197940243">(619) 794-0243</a>
+        </div>
+      </header>
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Workplace Harassment</p>
+          <h1>Harassed at work?</h1>
+          <p>You can check your options privately. We look at what happened, who knew, and whether you faced retaliation.</p>
+          <div class="trust-row" aria-label="Trust signals">
+            <span>Private review</span>
+            <span>No pressure</span>
+            <span>Retaliation check</span>
+          </div>
+          <p class="beta-note">Preview mode. The live site saves and emails leads.</p>
+        </div>
+        <form id="claim-form" class="wizard" novalidate>
+          <div class="progress-line"><span id="stepCount"></span><div class="progress-track"><span id="progressBar"></span></div></div>
+          <section id="stepMount" class="wizard-step is-active"></section>
+          <div id="resultBox" class="result-box" hidden><span>Review</span><strong id="resultTitle"></strong><p id="resultDetail"></p></div>
+          <p id="formStatus" class="form-status" role="status"></p>
+          <div class="wizard-actions">
+            <button id="backButton" class="button button-secondary" type="button">Back</button>
+            <button id="nextButton" class="button button-primary" type="button">Next</button>
+            <button id="submitButton" class="button button-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+      <section class="social-proof">
+        <div class="social-proof-header"><span>Results</span><h2>Support after harm.</h2></div>
+        <div class="result-grid">
+          <div class="settlement-card"><strong>$650K</strong><span>Workplace harassment and retaliation matter</span></div>
+          <div class="settlement-card"><strong>$300K</strong><span>Hostile work environment resolution</span></div>
+          <div class="settlement-card"><strong>$175K</strong><span>Retaliation after protected complaint</span></div>
+        </div>
+        <p class="proof-disclaimer">Past results do not guarantee future outcomes.</p>
+      </section>
+      <footer class="site-footer"><span>Private review</span><span>No pressure</span><span>Attorney advertising</span></footer>
+    </main>
+    <script>
+      window.INTAKE_CONFIG = {
+        category: "Workplace Sexual Harassment",
+        thresholds: { strong: 70, review: 42 },
+        resultHint: "What happened, who knew, and retaliation matter.",
+        consent: "I agree Steigerwalt PLC may call or text me. This does not create an attorney-client relationship.",
+        steps: [
+          { type: "choice", name: "lastIncident", title: "When was it?", options: [
+            { label: "Past 30 days", value: "Within the past 30 days", score: 16 },
+            { label: "Past 6 months", value: "Within the past 6 months", score: 15 },
+            { label: "6-12 months ago", value: "6 to 12 months ago", score: 10 },
+            { label: "1-3 years ago", value: "1 to 3 years ago", score: 4 },
+            { label: "Over 3 years ago", value: "More than 3 years ago", score: -10 }
+          ] },
+          { type: "choice", name: "conductType", title: "What happened?", options: [
+            { label: "Advances or touching", value: "Unwanted sexual advances/contact", score: 22, map: { injuryType: "Sexual harassment" } },
+            { label: "Supervisor pressure", value: "Quid pro quo pressure", score: 26, map: { injuryType: "Quid pro quo sexual harassment" } },
+            { label: "Repeated sexual conduct", value: "Hostile work environment", score: 18, map: { injuryType: "Hostile work environment" } },
+            { label: "Retaliation", value: "Retaliation", score: 18, map: { injuryType: "Retaliation after harassment" } },
+            { label: "Not sexual in nature", value: "Not sex-based", score: -16, map: { injuryType: "General workplace issue" } }
+          ] },
+          { type: "choice", name: "severityAndRole", title: "Severity?", options: [
+            { label: "Severe supervisor incident", value: "Severe supervisor incident", score: 28, map: { severity: "One severe incident", harasserRole: "Supervisor/manager" } },
+            { label: "Repeated conduct", value: "Repeated conduct", score: 22, map: { severity: "Repeated over weeks or months" } },
+            { label: "Ongoing conduct", value: "Ongoing conduct", score: 24, map: { severity: "Constant or ongoing" } },
+            { label: "One comment", value: "One offensive comment", score: 0, map: { severity: "One offensive comment" } },
+            { label: "Not sure", value: "Unsure severity", score: 3 }
+          ] },
+          { type: "choice", name: "reportAndImpact", title: "Report or retaliation?", options: [
+            { label: "Reported + job loss", value: "Reported with retaliation", score: 30, map: { reported: "Reported to HR/management", jobImpact: "Tangible job action", lostWages: 1 } },
+            { label: "Management knew", value: "Management knew", score: 18, map: { reported: "Supervisor knew/witnessed" } },
+            { label: "Afraid to report", value: "Not reported due to fear", score: 10, map: { jobImpact: "Hostile work environment only" } },
+            { label: "Hostile environment", value: "Hostile work environment only", score: 8, map: { jobImpact: "Hostile work environment only" } },
+            { label: "No job impact", value: "No job impact", score: -4, map: { jobImpact: "No job impact" } }
+          ] },
+          { type: "final", title: "Contact info", note: "Private follow-up only." }
+        ]
+      };
+    </script>
+    <script src="../intake.js"></script>
+  </body>
+</html>
