@@ -288,6 +288,17 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlparse(self.path).path
+        if path == "/api/health":
+            self.send_json(
+                200,
+                {
+                    "ok": True,
+                    "databaseConfigured": bool(DATABASE_URL),
+                    "smtpConfigured": bool(os.environ.get("SMTP_HOST") and (os.environ.get("SMTP_FROM") or os.environ.get("SMTP_USER"))),
+                    "exportEmails": EXPORT_EMAILS,
+                },
+            )
+            return
         if path == "/api/export":
             with db() as connection:
                 rows = [dict(row) for row in connection.execute(EXPORT_SELECT)]
@@ -326,7 +337,10 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 def main():
-    db().close()
+    try:
+        db().close()
+    except Exception as error:
+        print(f"Startup database check failed; continuing so static pages can load: {error}", file=sys.stderr)
     port = int(os.environ.get("PORT", "8000"))
     server = ThreadingHTTPServer(("0.0.0.0", port), Handler)
     print(f"Serving Steigerwalt PLC calculator at http://localhost:{port}")
