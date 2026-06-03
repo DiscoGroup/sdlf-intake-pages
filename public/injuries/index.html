@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>California Injury Claim Review | SDLF</title>
+    <title>California Injury Claim Review | Steigerwalt PLC</title>
     <meta name="description" content="Free injury, car accident, and wrongful death claim review.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +14,8 @@
     <main class="page-shell">
       <header class="topbar">
         <a class="brand" href="/">
-          <span class="brand-mark">SDLF</span>
-          <span class="brand-text">San Diego Law Firm</span>
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Steigerwalt PLC</span>
         </a>
         <div class="topbar-actions">
           <span class="beta-badge">Beta preview</span>
@@ -26,7 +26,7 @@
         <div class="hero-copy">
           <p class="eyebrow">Injury Claim Help</p>
           <h1>Were you hurt because someone else was careless?</h1>
-          <p>Car accidents, falls, dog bites, serious injuries, and wrongful death cases can move fast. Answer a few questions so SDLF can quickly see if your claim looks strong.</p>
+          <p>Car accidents, falls, dog bites, serious injuries, and wrongful death cases can move fast. Answer a few questions so Steigerwalt PLC can quickly see if your claim looks strong.</p>
           <p class="beta-note">Beta preview mode: complete the flow to test the UX and lead scoring. Render deployment will activate database storage and email exports.</p>
         </div>
         <form id="claim-form" class="wizard" novalidate>
@@ -57,7 +57,7 @@
         category: "Injuries / Car Accidents / Wrongful Death",
         thresholds: { strong: 70, review: 42 },
         resultHint: "Treatment, fault, timing, and damages determine whether this should be prioritized.",
-        consent: "By submitting, you agree SDLF may call or text you about your request. Submitting does not create an attorney-client relationship.",
+        consent: "By submitting, you agree Steigerwalt PLC may call or text you about your request. Submitting does not create an attorney-client relationship.",
         steps: [
           { type: "choice", name: "accidentDate", title: "When did the injury happen?", options: [
             { label: "In the past month", value: "In the past month", score: 15 },
@@ -87,7 +87,7 @@
             { label: "Mostly property damage", value: "Property damage", score: -8, map: { fault: "0" } },
             { label: "I already have an attorney", value: "Already represented", score: -12, map: { lawyerStatus: "Already represented" } }
           ] },
-          { type: "final", title: "Where should we send your review?", note: "Share your contact details and SDLF can follow up privately." }
+          { type: "final", title: "Where should we send your review?", note: "Share your contact details and Steigerwalt PLC can follow up privately." }
         ]
       };
     </script>

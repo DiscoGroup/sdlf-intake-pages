@@ -236,7 +236,7 @@ def send_export_email(row):
 
     csv_body = export_csv([row])
     message = EmailMessage()
-    message["Subject"] = f"New SDLF claim calculator submission: {row['fullName']}"
+    message["Subject"] = f"New Steigerwalt PLC claim calculator submission: {row['fullName']}"
     message["From"] = smtp_from
     message["To"] = ", ".join(EXPORT_EMAILS)
     message.set_content(
@@ -326,7 +326,7 @@ def main():
     db().close()
     port = int(os.environ.get("PORT", "8000"))
     server = ThreadingHTTPServer(("0.0.0.0", port), Handler)
-    print(f"Serving SDLF calculator at http://localhost:{port}")
+    print(f"Serving Steigerwalt PLC calculator at http://localhost:{port}")
     server.serve_forever()
 
 

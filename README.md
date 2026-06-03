@@ -1,6 +1,6 @@
-# SDLF Injury Claim Landing Page
+# Steigerwalt PLC Injury Claim Landing Page
 
-A simple SDLF-branded injury claim calculator with persistent lead storage and automatic CSV email export.
+A simple Steigerwalt PLC-branded injury claim calculator with persistent lead storage and automatic CSV email export.
 
 [Deploy to Render](https://dashboard.render.com/blueprints/new?repo=https://github.com/DiscoGroup/sdlf-intake-pages)
 
