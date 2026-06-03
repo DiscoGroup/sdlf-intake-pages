@@ -59,35 +59,35 @@
         resultHint: "Strong leads usually involve unwelcome sex-based conduct, severity or repetition, employer notice, retaliation, or job consequences.",
         consent: "By submitting, you agree Steigerwalt PLC may call or text you about your confidential workplace review. Submitting does not create an attorney-client relationship.",
         steps: [
-          { type: "choice", name: "lastIncident", title: "When did the most recent incident happen?", options: [
-            { label: "Within the past 30 days", value: "Within the past 30 days", score: 16 },
-            { label: "Within the past 6 months", value: "Within the past 6 months", score: 15 },
-            { label: "6 to 12 months ago", value: "6 to 12 months ago", score: 10 },
-            { label: "1 to 3 years ago", value: "1 to 3 years ago", score: 4 },
-            { label: "More than 3 years ago", value: "More than 3 years ago", score: -10 }
+          { type: "choice", name: "lastIncident", title: "When was it?", options: [
+            { label: "Past 30 days", value: "Within the past 30 days", score: 16 },
+            { label: "Past 6 months", value: "Within the past 6 months", score: 15 },
+            { label: "6-12 months ago", value: "6 to 12 months ago", score: 10 },
+            { label: "1-3 years ago", value: "1 to 3 years ago", score: 4 },
+            { label: "Over 3 years ago", value: "More than 3 years ago", score: -10 }
           ] },
-          { type: "choice", name: "conductType", title: "What best describes what happened?", options: [
-            { label: "Sexual advances, touching, or requests for sexual favors", value: "Unwanted sexual advances/contact", score: 22, map: { injuryType: "Sexual harassment" } },
-            { label: "A supervisor linked work benefits or punishment to sexual conduct", value: "Quid pro quo pressure", score: 26, map: { injuryType: "Quid pro quo sexual harassment" } },
-            { label: "Repeated sexual comments, messages, images, or jokes", value: "Hostile work environment", score: 18, map: { injuryType: "Hostile work environment" } },
-            { label: "Retaliation after rejecting or reporting conduct", value: "Retaliation", score: 18, map: { injuryType: "Retaliation after harassment" } },
-            { label: "General unfairness, not sexual in nature", value: "Not sex-based", score: -16, map: { injuryType: "General workplace issue" } }
+          { type: "choice", name: "conductType", title: "What happened?", options: [
+            { label: "Advances or touching", value: "Unwanted sexual advances/contact", score: 22, map: { injuryType: "Sexual harassment" } },
+            { label: "Supervisor pressure", value: "Quid pro quo pressure", score: 26, map: { injuryType: "Quid pro quo sexual harassment" } },
+            { label: "Repeated sexual conduct", value: "Hostile work environment", score: 18, map: { injuryType: "Hostile work environment" } },
+            { label: "Retaliation", value: "Retaliation", score: 18, map: { injuryType: "Retaliation after harassment" } },
+            { label: "Not sexual in nature", value: "Not sex-based", score: -16, map: { injuryType: "General workplace issue" } }
           ] },
-          { type: "choice", name: "severityAndRole", title: "How serious was it?", options: [
-            { label: "One severe incident by a supervisor or manager", value: "Severe supervisor incident", score: 28, map: { severity: "One severe incident", harasserRole: "Supervisor/manager" } },
-            { label: "Repeated conduct over weeks or months", value: "Repeated conduct", score: 22, map: { severity: "Repeated over weeks or months" } },
-            { label: "Constant or ongoing conduct", value: "Ongoing conduct", score: 24, map: { severity: "Constant or ongoing" } },
-            { label: "Mostly one offensive comment", value: "One offensive comment", score: 0, map: { severity: "One offensive comment" } },
-            { label: "I am not sure how to describe it", value: "Unsure severity", score: 3 }
+          { type: "choice", name: "severityAndRole", title: "Severity?", options: [
+            { label: "Severe supervisor incident", value: "Severe supervisor incident", score: 28, map: { severity: "One severe incident", harasserRole: "Supervisor/manager" } },
+            { label: "Repeated conduct", value: "Repeated conduct", score: 22, map: { severity: "Repeated over weeks or months" } },
+            { label: "Ongoing conduct", value: "Ongoing conduct", score: 24, map: { severity: "Constant or ongoing" } },
+            { label: "One comment", value: "One offensive comment", score: 0, map: { severity: "One offensive comment" } },
+            { label: "Not sure", value: "Unsure severity", score: 3 }
           ] },
-          { type: "choice", name: "reportAndImpact", title: "Did the workplace know or retaliate?", options: [
-            { label: "I reported it and then lost pay, hours, duties, or my job", value: "Reported with retaliation", score: 30, map: { reported: "Reported to HR/management", jobImpact: "Tangible job action", lostWages: 1 } },
-            { label: "Management knew or witnessed it", value: "Management knew", score: 18, map: { reported: "Supervisor knew/witnessed" } },
-            { label: "I was afraid to report and the environment stayed hostile", value: "Not reported due to fear", score: 10, map: { jobImpact: "Hostile work environment only" } },
-            { label: "It affected my work environment but no job action", value: "Hostile work environment only", score: 8, map: { jobImpact: "Hostile work environment only" } },
+          { type: "choice", name: "reportAndImpact", title: "Report or retaliation?", options: [
+            { label: "Reported + job loss", value: "Reported with retaliation", score: 30, map: { reported: "Reported to HR/management", jobImpact: "Tangible job action", lostWages: 1 } },
+            { label: "Management knew", value: "Management knew", score: 18, map: { reported: "Supervisor knew/witnessed" } },
+            { label: "Afraid to report", value: "Not reported due to fear", score: 10, map: { jobImpact: "Hostile work environment only" } },
+            { label: "Hostile environment", value: "Hostile work environment only", score: 8, map: { jobImpact: "Hostile work environment only" } },
             { label: "No job impact", value: "No job impact", score: -4, map: { jobImpact: "No job impact" } }
           ] },
-          { type: "final", title: "Where should we send your review?", note: "Share your contact details and a reviewer can follow up privately." }
+          { type: "final", title: "Contact info", note: "Private follow-up only." }
         ]
       };
     </script>

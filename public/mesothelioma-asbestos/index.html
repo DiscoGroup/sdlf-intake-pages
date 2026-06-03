@@ -59,34 +59,34 @@
         resultHint: "Strong leads usually have a diagnosis, plausible asbestos exposure, and filing timing that needs prompt review.",
         consent: "By submitting, you agree Steigerwalt PLC may call or text you about this asbestos claim review. Submitting does not create an attorney-client relationship.",
         steps: [
-          { type: "choice", name: "diagnosis", title: "Has there been an asbestos-related diagnosis?", options: [
-            { label: "Mesothelioma confirmed by a doctor", value: "Mesothelioma", score: 30, map: { injured: "Yes", treatment: "Mesothelioma diagnosis" } },
-            { label: "Lung cancer with asbestos exposure", value: "Lung cancer with asbestos exposure", score: 18, map: { injured: "Yes" } },
-            { label: "Asbestosis or pleural disease", value: "Asbestosis or pleural disease", score: 12, map: { injured: "Yes" } },
-            { label: "Symptoms but no diagnosis yet", value: "No diagnosis yet", score: 0, map: { injured: "Not sure yet" } },
-            { label: "No asbestos-related diagnosis", value: "No asbestos diagnosis", score: -18, map: { injured: "No" } }
+          { type: "choice", name: "diagnosis", title: "Diagnosis?", options: [
+            { label: "Mesothelioma", value: "Mesothelioma", score: 30, map: { injured: "Yes", treatment: "Mesothelioma diagnosis" } },
+            { label: "Lung cancer + asbestos", value: "Lung cancer + asbestos", score: 18, map: { injured: "Yes" } },
+            { label: "Asbestosis / pleural disease", value: "Asbestosis / pleural disease", score: 12, map: { injured: "Yes" } },
+            { label: "Symptoms, no diagnosis", value: "No diagnosis yet", score: 0, map: { injured: "Not sure yet" } },
+            { label: "No diagnosis", value: "No asbestos diagnosis", score: -18, map: { injured: "No" } }
           ] },
-          { type: "choice", name: "exposureType", title: "Where may asbestos exposure have happened?", options: [
-            { label: "Shipyard, Navy, or military work", value: "Shipyard/Navy/military exposure", score: 20 },
-            { label: "Construction, insulation, demolition, or trades", value: "Construction/trade exposure", score: 18 },
-            { label: "Factory, refinery, power plant, or industrial site", value: "Industrial worksite exposure", score: 18 },
-            { label: "Auto brakes, boilers, pipe covering, or asbestos products", value: "Product exposure", score: 16 },
-            { label: "Secondhand exposure from a family member's work clothes", value: "Secondary household exposure", score: 12 },
-            { label: "I do not know", value: "Unknown exposure", score: 2 }
+          { type: "choice", name: "exposureType", title: "Exposure source?", options: [
+            { label: "Shipyard / Navy", value: "Shipyard/Navy/military exposure", score: 20 },
+            { label: "Construction / trades", value: "Construction/trade exposure", score: 18 },
+            { label: "Industrial site", value: "Industrial worksite exposure", score: 18 },
+            { label: "Asbestos products", value: "Product exposure", score: 16 },
+            { label: "Secondhand exposure", value: "Secondary household exposure", score: 12 },
+            { label: "Not sure", value: "Unknown exposure", score: 2 }
           ] },
-          { type: "choice", name: "timingAndRecords", title: "What timing and records are available?", options: [
-            { label: "Diagnosed within 3 years and medical/work records exist", value: "Recent diagnosis with records", score: 28, map: { diagnosisDate: "Recent diagnosis", records: "Medical and work records" } },
-            { label: "A loved one passed away and family has records", value: "Wrongful death asbestos claim with records", score: 22, map: { diagnosisDate: "Wrongful death asbestos claim", records: "Family records" } },
-            { label: "Diagnosis records only", value: "Medical records only", score: 12, map: { records: "Medical records" } },
-            { label: "Exposure history only", value: "Exposure history only", score: 6, map: { records: "Work history" } },
+          { type: "choice", name: "timingAndRecords", title: "Records?", options: [
+            { label: "Recent diagnosis + records", value: "Recent diagnosis with records", score: 28, map: { diagnosisDate: "Recent diagnosis", records: "Medical and work records" } },
+            { label: "Wrongful death + records", value: "Wrongful death asbestos claim with records", score: 22, map: { diagnosisDate: "Wrongful death asbestos claim", records: "Family records" } },
+            { label: "Diagnosis records", value: "Medical records only", score: 12, map: { records: "Medical records" } },
+            { label: "Exposure history", value: "Exposure history", score: 6, map: { records: "Work history" } },
             { label: "No records yet", value: "No records", score: -2, map: { records: "No records" } }
           ] },
-          { type: "choice", name: "lawyerStatus", title: "Is a lawyer already handling the asbestos claim?", options: [
+          { type: "choice", name: "lawyerStatus", title: "Attorney already?", options: [
             { label: "No", value: "No lawyer", score: 8 },
-            { label: "Yes, but we may switch", value: "Considering switch", score: 2 },
-            { label: "Yes, already represented", value: "Already represented", score: -10 }
+            { label: "May switch", value: "Considering switch", score: 2 },
+            { label: "Already represented", value: "Already represented", score: -10 }
           ] },
-          { type: "final", title: "Where should we send your review?", note: "A reviewer can evaluate diagnosis, exposure sources, trust funds, and filing deadlines." }
+          { type: "final", title: "Contact info", note: "Private follow-up only." }
         ]
       };
     </script>

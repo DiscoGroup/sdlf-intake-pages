@@ -59,35 +59,35 @@
         resultHint: "Treatment, fault, timing, and damages determine whether this should be prioritized.",
         consent: "By submitting, you agree Steigerwalt PLC may call or text you about your request. Submitting does not create an attorney-client relationship.",
         steps: [
-          { type: "choice", name: "accidentDate", title: "When did the injury happen?", options: [
-            { label: "In the past month", value: "In the past month", score: 15 },
-            { label: "1 to 6 months ago", value: "1 to 6 months ago", score: 14 },
-            { label: "Within the last year", value: "Within the last year", score: 10 },
-            { label: "1 to 2 years ago", value: "1 to 2 years ago", score: 5 },
-            { label: "More than 2 years ago", value: "More than 2 years ago", score: -8 }
+          { type: "choice", name: "accidentDate", title: "When did it happen?", options: [
+            { label: "Past month", value: "In the past month", score: 15 },
+            { label: "1-6 months ago", value: "1 to 6 months ago", score: 14 },
+            { label: "Past year", value: "Within the last year", score: 10 },
+            { label: "1-2 years ago", value: "1 to 2 years ago", score: 5 },
+            { label: "Over 2 years ago", value: "More than 2 years ago", score: -8 }
           ] },
-          { type: "choice", name: "injuryType", title: "What type of case is this?", options: [
+          { type: "choice", name: "injuryType", title: "What happened?", options: [
             { label: "Car accident", value: "Auto accident", score: 12 },
-            { label: "Motorcycle or bicycle accident", value: "Motorcycle or bicycle accident", score: 13 },
-            { label: "Truck or commercial vehicle accident", value: "Truck accident", score: 16 },
+            { label: "Motorcycle or bicycle", value: "Motorcycle or bicycle", score: 13 },
+            { label: "Truck accident", value: "Truck accident", score: 16 },
             { label: "Wrongful death", value: "Wrongful death", score: 22, map: { injured: "Fatal injury" } },
             { label: "Other injury or fall", value: "Other injury or fall", score: 7 }
           ] },
-          { type: "choice", name: "treatment", title: "How serious was the medical care?", options: [
-            { label: "Hospital, surgery, or admitted overnight", value: "4", score: 22, map: { injured: "Yes" } },
-            { label: "Emergency room or imaging", value: "2.25", score: 16, map: { injured: "Yes" } },
-            { label: "Doctor, specialist, or physical therapy", value: "3", score: 14, map: { injured: "Yes" } },
-            { label: "Pain but no treatment yet", value: "1.25", score: 5, map: { injured: "Not sure yet" } },
+          { type: "choice", name: "treatment", title: "Medical care?", options: [
+            { label: "Hospital or surgery", value: "4", score: 22, map: { injured: "Yes" } },
+            { label: "ER or imaging", value: "2.25", score: 16, map: { injured: "Yes" } },
+            { label: "Doctor or therapy", value: "3", score: 14, map: { injured: "Yes" } },
+            { label: "Pain, no care yet", value: "1.25", score: 5, map: { injured: "Not sure yet" } },
             { label: "No injury", value: "1", score: -14, map: { injured: "No" } }
           ] },
-          { type: "choice", name: "caseStrength", title: "Which best describes the claim?", options: [
-            { label: "Someone else was clearly responsible and there are medical bills", value: "Clear liability with medical damages", score: 28, map: { fault: "0", lawyerStatus: "No lawyer" } },
-            { label: "Fault may be disputed, but there are injuries", value: "Disputed liability with injuries", score: 15, map: { fault: "50" } },
-            { label: "A loved one passed away", value: "Wrongful death damages", score: 28, map: { fault: "0", injured: "Fatal injury" } },
+          { type: "choice", name: "caseStrength", title: "Claim status?", options: [
+            { label: "Clear fault + medical bills", value: "Clear liability with medical damages", score: 28, map: { fault: "0", lawyerStatus: "No lawyer" } },
+            { label: "Fault disputed + injuries", value: "Disputed liability with injuries", score: 15, map: { fault: "50" } },
+            { label: "Loved one passed away", value: "Wrongful death damages", score: 28, map: { fault: "0", injured: "Fatal injury" } },
             { label: "Mostly property damage", value: "Property damage", score: -8, map: { fault: "0" } },
-            { label: "I already have an attorney", value: "Already represented", score: -12, map: { lawyerStatus: "Already represented" } }
+            { label: "Already have attorney", value: "Already represented", score: -12, map: { lawyerStatus: "Already represented" } }
           ] },
-          { type: "final", title: "Where should we send your review?", note: "Share your contact details and Steigerwalt PLC can follow up privately." }
+          { type: "final", title: "Contact info", note: "Private follow-up only." }
         ]
       };
     </script>
