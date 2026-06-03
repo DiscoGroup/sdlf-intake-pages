@@ -261,9 +261,12 @@ def send_export_email(row):
     port = int(os.environ.get("SMTP_PORT", "587"))
     username = os.environ.get("SMTP_USER")
     password = os.environ.get("SMTP_PASSWORD")
+    use_ssl = os.environ.get("SMTP_SSL", "false").lower() == "true"
+    use_starttls = os.environ.get("SMTP_STARTTLS", "true").lower() != "false"
 
-    with smtplib.SMTP(smtp_host, port, timeout=15) as smtp:
-        if os.environ.get("SMTP_STARTTLS", "true").lower() != "false":
+    smtp_class = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+    with smtp_class(smtp_host, port, timeout=15) as smtp:
+        if use_starttls and not use_ssl:
             smtp.starttls()
         if username and password:
             smtp.login(username, password)

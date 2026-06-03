@@ -34,15 +34,17 @@ http://localhost:8000/api/export
 
 Each successful submission attempts to email a one-row CSV export to `chaz@vnsfirm.com`.
 
-Set these environment variables in production:
+The Render Blueprint is prefilled for Brevo's free SMTP relay. Add your private Brevo SMTP login/key and a verified sender address:
 
 ```bash
-export SMTP_HOST="smtp.example.com"
+export SMTP_HOST="smtp-relay.brevo.com"
 export SMTP_PORT="587"
-export SMTP_USER="smtp-user"
-export SMTP_PASSWORD="smtp-password"
-export SMTP_FROM="no-reply@example.com"
+export SMTP_USER="your-brevo-smtp-login"
+export SMTP_PASSWORD="your-brevo-smtp-key"
+export SMTP_FROM="verified-sender@example.com"
 export EXPORT_EMAILS="chaz@vnsfirm.com"
+export SMTP_STARTTLS="true"
+export SMTP_SSL="false"
 python3 server.py
 ```
 
@@ -55,18 +57,17 @@ This repo includes `render.yaml` for a Render Blueprint with:
 - Python web service
 - Managed Render Postgres database
 - `DATABASE_URL` wired automatically from the database
-- SMTP environment variable placeholders
+- Brevo SMTP relay defaults with secret credential placeholders
 
 Render setup:
 
 1. Click the Render deploy link above.
 2. Connect the `DiscoGroup/sdlf-intake-pages` GitHub repo if Render asks for access.
 3. Add the SMTP secrets in Render:
-   - `SMTP_HOST`
    - `SMTP_USER`
    - `SMTP_PASSWORD`
    - `SMTP_FROM`
-   - optional `SMTP_PORT` and `SMTP_STARTTLS`
+   - optional: keep `SMTP_HOST=smtp-relay.brevo.com`, `SMTP_PORT=587`, `SMTP_STARTTLS=true`, `SMTP_SSL=false`
 4. Deploy.
 
 The app listens on Render's `PORT` environment variable and falls back to SQLite only for local development.

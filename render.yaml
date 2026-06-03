@@ -15,7 +15,7 @@ services:
       - key: EXPORT_EMAILS
         value: chaz@vnsfirm.com
       - key: SMTP_HOST
-        sync: false
+        value: smtp-relay.brevo.com
       - key: SMTP_PORT
         value: 587
       - key: SMTP_USER
@@ -26,6 +26,8 @@ services:
         sync: false
       - key: SMTP_STARTTLS
         value: true
+      - key: SMTP_SSL
+        value: false
 
 databases:
   - name: sdlf-intake-db
