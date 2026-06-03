@@ -2,6 +2,8 @@
 
 A simple SDLF-branded injury claim calculator with persistent lead storage and automatic CSV email export.
 
+[Deploy to Render](https://dashboard.render.com/blueprints/new?repo=https://github.com/DiscoGroup/sdlf-intake-pages)
+
 ## Run locally
 
 ```bash
@@ -57,8 +59,8 @@ This repo includes `render.yaml` for a Render Blueprint with:
 
 Render setup:
 
-1. Push this repo to GitHub.
-2. In Render, create a new Blueprint from the GitHub repo.
+1. Click the Render deploy link above.
+2. Connect the `DiscoGroup/sdlf-intake-pages` GitHub repo if Render asks for access.
 3. Add the SMTP secrets in Render:
    - `SMTP_HOST`
    - `SMTP_USER`
